@@ -1,0 +1,573 @@
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+  
+body {
+    /* background: linear-gradient(to right, #0062E6, #33AEFF); */
+    background-color: #fff;
+}
+#main, 
+.html_stretched #wrap_all,
+#av_section_1 {
+    background-color: #fff;
+}
+#quiz-six-stages h1,
+#quiz-six-stages h2,
+#quiz-six-stages h3,
+#quiz-six-stages h4,
+#quiz-six-stages h5,
+#quiz-six-stages h6 {
+    font-family: inherit !important;
+}
+.display-3 strong {
+    font-weight: 700;
+}
+.dash-circle-bullet {
+    list-style-image: url('https://howtomanageasmalllawfirm.com/wp-content/uploads/2019/09/dash-circle-bullet.png') !important;
+}
+#quiz-six-stages ul {
+    font-size: 1.75rem;
+}
+#entry-form h3 {
+    font-size: 2.5vw;
+}
+@media only screen and (max-width: 1500px) {
+    #entry-form h3 {
+        font-size: 3.5vw;
+    }
+}
+@media only screen and (max-width: 767px) {
+    #entry-form h3 {
+        font-size: 8.75vw;
+    }
+}
+#entry-form ::placeholder,
+#entry-form ::-moz-placeholder,
+#entry-form ::-webkit-input-placeholder {
+    font-weight: 300;
+    font-size: 11px;
+    color: #aaa;
+}
+@media only screen and (max-width: 767px) {
+  .responsive #top #wrap_all .container {
+    width: 95%;
+    max-width: 95%;
+  }
+}
+#quiz-six-stages {
+    /* display: none; /* hide the calculator by default */
+    background: #fff;
+}
+.responsive #top #quiz-six-stages.container {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+}
+#top #quiz-six-stages .form-control:focus {
+
+    color: #495057;
+    background-color: #fff;
+    border-color: #f15722;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(255,127,80,.25);
+
+}
+#top #quiz-six-stages .form-control {
+
+    display: block;
+    width: 100%;
+    height: 1.75rem;
+    padding: .2rem .75rem;
+    font-size: .75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-bottom: 0;
+
+}  
+#top #quiz-six-stages .card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#top #quiz-six-stages .card-signin .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+#top #quiz-six-stages .card-signin .card-img-left {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+    background-size: cover;
+}
+
+#top #quiz-six-stages .card-signin .card-body {
+    padding: 2rem;
+}
+
+#top #quiz-six-stages .form-goals {
+    width: 100%;
+}
+
+#top #quiz-six-stages .form-goals .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+#top #quiz-six-stages .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+#top #quiz-six-stages .form-label-group input {
+    height: auto;
+    border-radius: 2rem;
+}
+
+#top #quiz-six-stages .form-label-group>input,
+#top #quiz-six-stages .form-label-group>label {
+    padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+#top #quiz-six-stages .form-label-group>label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+    font-size: .8em;
+    font-weight: initial;
+}
+
+#top #quiz-six-stages .form-label-group input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+#top #quiz-six-stages .form-label-group input:-ms-input-placeholder {
+    color: transparent;
+}
+
+#top #quiz-six-stages .form-label-group input::-ms-input-placeholder {
+    color: transparent;
+}
+
+#top #quiz-six-stages .form-label-group input::-moz-placeholder {
+    color: transparent;
+}
+
+#top #quiz-six-stages .form-label-group input::placeholder {
+    color: transparent;
+}
+
+#top #quiz-six-stages .form-label-group input:not(:placeholder-shown) {
+    padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+    padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+#top #quiz-six-stages .form-label-group input:not(:placeholder-shown)~label {
+    padding-top: calc(var(--input-padding-y) / 3);
+    padding-bottom: calc(var(--input-padding-y) / 3);
+    font-size: 12px;
+    color: #777;
+}
+
+#top #quiz-six-stages .btn-google {
+    color: white;
+    background-color: #ea4335;
+}
+
+#top #quiz-six-stages .btn-facebook {
+    color: white;
+    background-color: #3b5998;
+}
+.form-control {
+    font-size: .75rem;
+    height: 40px;
+    border-radius: 2px;
+}
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.border-top-gray { border-top-color: #adb5bd; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.lh-condensed { line-height: 1.25; }
+
+.odometer {
+    font-size: 23px;
+    white-space: nowrap;
+    font-weight: 700;
+}
+@media only screen and (max-width:667px) {
+    .odometer {
+        font-size: 16px;
+    }
+    
+}
+#quiz-six-stages li.list-group-item {
+    margin-left: 0;
+    margin-right: 0;
+    padding: .25rem;
+}
+#output-cost .odometer-inside::before, 
+#output-alimony .odometer-inside::before,
+#output-childsupport  .odometer-inside::before {
+    content: "$";
+    font-weight: 700;
+    padding-right: 4px;
+}
+#top #quiz-six-stages h6.my-0 {
+    font-size: initial;
+    font-family: inherit;
+}
+@media only screen and (max-width:667px) {
+  #quiz-six-stages h4 span {
+    color: inherit;
+  }
+}
+.stick-top {
+  position: sticky;
+  position: -webkit-sticky;
+  -webkit-backface-visibility: hidden;
+  top: 0;
+}
+/* position: sticky is tricky on safari so doing this work-around instead */
+@media only screen and (max-width:667px) {
+    .stick-top {
+        position: fixed;
+        right: 0;
+        height: auto !important;
+        bottom: 0;
+        top: 130px;
+        padding-left: 10px !important;
+    }
+    /* --
+    .input-pane {
+        width: calc((100% - 90px) / 2);
+        max-width: calc((100% - 90px) / 2);
+    }
+    -- */
+}
+@media only screen and (max-width:667px) {
+  div.col-md-6:nth-child(1) {
+    background-color: #fff;
+  }
+}
+/* Mods and overrides to AC form */
+form {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    font-family: inherit !important;
+}
+#top #wrap_all .all_colors h2,
+.main_color h1,
+.main_color h2,
+.main_color h3,
+.main_color h4,
+.main_color h5,
+.main_color h6 {
+    color: inherit;
+}
+#quiz-form {
+    opacity: 1;
+    display: initial;
+}
+#quiz-form h2 {
+    font-weight: 700;
+    font-size: 28px;    
+}
+#quiz-form h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 2em !important;
+}
+#quiz-six-stages #quiz-form label {
+    font-size: 22px;
+    font-weight: 500;
+}
+#quiz-six-stages #quiz-form h4 {
+    font-size: 22px;
+}
+.custom-control-input:checked ~ .custom-control-label::before,
+.custom-control-input:hover ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #f15722;
+    background-color: #f15722;
+}
+.custom-radio .custom-control-input:hover ~ .custom-control-label::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+#quiz-six-stages #quiz-form .custom-radio label.custom-control-label {
+    font-size: 16px;
+}
+#quiz-six-stages #quiz-form select {
+    background-color: #fff;
+}
+#quiz-six-stages #quiz-form input[type="text"] {
+    height: 2.5rem;
+    border-radius: 1px;
+}
+#quiz-form h5 {
+    font-size: 24px;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+@media only screen and (max-width:667px) {
+    #quiz-form h5 {
+        font-size: 17px;
+    }
+}
+#quiz-form .custom-select:focus,
+#quiz-form .form-control:focus {
+    border-color: #f15722;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(255,127,80,.25);
+}
+#quiz-six-stages #quiz-form h6.text-muted {
+    color: #918e8d !important;
+}
+@media only screen and (max-width:667px) {
+    #quiz-six-stages #quiz-form h6.text-muted {
+        font-size: 17px;
+    }
+}
+.custom-control.custom-radio {
+    margin-bottom: .5em;
+}
+.quiz .btn-primary:disabled {
+    background-color: #ee8560;
+    border-color: #ee8560;
+}
+.quiz .btn-primary {
+    background-color: #f15722;
+    border-color: #f15722;
+}
+
+/* Remove default blue border around slide after clicking on it */
+.slick-slide.slick-current:focus {
+    outline: none !important;
+}
+/* ===== CONTENTS OF slick-theme.css INCLUDED HERE ========= */
+
+@charset 'UTF-8';
+/* Slider */
+.slick-loading .slick-list
+{
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face
+{
+    font-family: inherit;
+    font-weight: normal;
+    font-style: normal;
+
+}
+/* Arrows */
+.slick-prev,
+.slick-next
+{
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+    color: transparent;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before
+{
+    opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before
+{
+    opacity: .25;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    font-size: 20px;
+    line-height: 1;
+
+    opacity: .75;
+    color: #343a40;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev
+{
+    left: -25px;
+}
+[dir='rtl'] .slick-prev
+{
+    right: -25px;
+    left: auto;
+}
+.slick-prev:before
+{
+    content: '\f0a8';
+}
+[dir='rtl'] .slick-prev:before
+{
+    content: '\f0a9';
+}
+
+.slick-next
+{
+    right: -25px;
+}
+[dir='rtl'] .slick-next
+{
+    right: auto;
+    left: -25px;
+}
+.slick-next::before {
+    content: '\f0a9';
+}
+[dir='rtl'] .slick-next:before
+{
+    content: '\f0a8';
+}
+
+/* Dots */
+.slick-dotted.slick-slider
+{
+    margin-bottom: 30px;
+}
+
+.slick-dots
+{
+    position: absolute;
+    bottom: -25px;
+
+    display: block;
+
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+
+    text-align: center;
+}
+.slick-dots li
+{
+    position: relative;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+
+    cursor: pointer;
+}
+.slick-dots li button
+{
+    font-size: 0;
+    line-height: 0;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus
+{
+    outline: none;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before
+{
+    opacity: 1;
+}
+.slick-dots li button:before
+{
+    font-family: sans-serif;
+    font-size: 36px;
+    line-height: 20px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 20px;
+    height: 20px;
+
+    content: '•';
+    text-align: center;
+
+    opacity: .25;
+    color: black;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before
+{
+    opacity: .75;
+    color: black;
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Interactive Quiz Experiment: Six Stages Quiz</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+  </head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>         
+  
+
+  <link href="form-validation.css" rel="stylesheet">
+  <link href="quiz-six-stages.css" rel="stylesheet">
+  <script type="text/javascript" src="quiz-six-stages.js"></script>
+  
+  
+  <body class="bg-light">
+    <div id="quiz-six-stages" class="container">
+
+      <div id="quiz-form">
+        <form>
+
+          <div class="row">
+            <div class="col">
+              <h2 class="text-center mb-2">
+                WHAT IS YOUR NEXT STEP TO LAW FIRM GROWTH?
+              </h2>
+              <h3 class="text-center mb-2 text-muted">
+                Take this short quiz to find out why you’re stuck and get your Customized Growth Strategy.
+              </h3>
+            </div>
+          </div> <!-- row 1 -->
+
+          <div class="row">
+
+            <div class="quiz col bg-dark text-light p-4 input-pane">
+              <div class="">
+                <h4 class="mb-3">Which statement is most true for you?</h4>
+                <div class="click-next d-block mb-4">
+                    <div class="custom-control custom-radio">
+                      <input id="q-1" name="group-1" type="radio" value="1" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-1">I am thinking about starting my own law firm</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-2" name="group-1" type="radio" value="1.5" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-2">I just started my own firm and am a solo practitioner</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-3" name="group-1" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-3">I have been in business 1-3 years and have a small staff</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-4" name="group-1" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-4">I have been in business more than 5 years and have several employees and associates</label>
+                    </div>
+                </div>
+              </div> <!-- end of question -->
+              <div class="">
+                <h4 class="mb-3">Which challenge can you relate to the most?</h4>
+                <div class="click-next d-block mb-4">
+                    <div class="custom-control custom-radio">
+                      <input id="q-5" name="group-2" type="radio" value="1" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-5">I am working too many hours for not enough of an ROI</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-6" name="group-2" type="radio" value="1.5" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-6">I keep hitting up against cash crunches and go into panic mode</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-7" name="group-2" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-7">I have no systems in place for marketing my law firm, so I am living case by case</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-8" name="group-2" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-8">All of the above</label>
+                    </div>
+                </div>
+              </div> <!-- end of question -->
+              <div class="">
+                <h4 class="mb-3">Which best describes your ideal outcome?</h4>
+                <div class="click-next d-block mb-4">
+                    <div class="custom-control custom-radio">
+                      <input id="q-9" name="group-3" type="radio" value="1" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-9">I will finally have a staff so that I am not doing all the work myself.</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-10" name="group-3" type="radio" value="1.5" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-10">I will have a business plan so that everyone in the firm knows exactly what needs to happen</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-11" name="group-3" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-11">My revenue will consistently grow even when I am not physically there.</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-12" name="group-3" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-12">I will be able to take a lot of time off and eventually just be the owner of the firm</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-13" name="group-3" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-13">All of the above</label>
+                    </div>
+
+                </div>
+              </div> <!-- end of question -->
+              <div class="">
+                <h4 class="mb-3">If you had to pick just one, what drives you the most?</h4>
+                <div class="click-next d-block mb-4">
+                    <div class="custom-control custom-radio">
+                      <input id="q-14" name="group-4" type="radio" value="1" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-14">My financial goals.  I am tired of laying awake at night worrying and feeling like a failure.</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-15" name="group-4" type="radio" value="1.5" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-15">My family/personal life. I want this to work so I can spend more time with them.</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-16" name="group-4" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-16">My mission. I do what I do to make a difference and want to help more people.</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input id="q-17" name="group-4" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-17">My reputation. I have big goals and want to be more visible in my community.</label>
+                    </div>
+                </div>
+              </div> <!-- end of question -->
+              <div class="">
+                <h4 class="mb-3">Which best describes your annual revenue?</h4>
+                <div class="d-block mb-4 revenue">
+                    <div id="stage-1" class="custom-control custom-radio">
+                      <input id="q-18" name="group-5" type="radio" value="1" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-18">$0-250k</label>
+                    </div>
+                    <div id="stage-2" class="custom-control custom-radio">
+                      <input id="q-19" name="group-5" type="radio" value="2" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-19">$250k-500k</label>
+                    </div>
+                    <div id="stage-3" class="custom-control custom-radio">
+                      <input id="q-20" name="group-5" type="radio" value="3" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-20">$500k-1.5 Million</label>
+                    </div>
+                    <div id="stage-4" class="custom-control custom-radio">
+                      <input id="q-21" name="group-5" type="radio" value="4" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-21">$1.5 Million-3 Million</label>
+                    </div>
+                    <div id="stage-5" class="custom-control custom-radio">
+                      <input id="q-22" name="group-5" type="radio" value="5" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-22">$3 Million – 5 Million</label>
+                    </div>
+                    <div id="stage-6" class="custom-control custom-radio">
+                      <input id="q-23" name="group-5" type="radio" value="6" class="custom-control-input" >
+                      <label class="custom-control-label" for="q-23">$5 Million and above</label>
+                    </div>
+                </div>
+                <div class="submit-quiz text-center">
+                  <button type="button"  disabled="disabled" class="btn btn-lg btn-primary">Show My Stage</button>
+                </div>
+              </div> <!-- end of question -->
+
+          </div>
+
+          </div><!-- row 2 -->
+
+        </form>
+      </div> <!-- id-"quiz-form" -->
+
+    </div> <!-- id="quiz-six-stages" -->
+  </body>
+</html>

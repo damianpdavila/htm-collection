@@ -1,0 +1,42 @@
+
+AC source tracking
+
+XX > include hidden form on all site pages (site footer-ish)
+> include JS:
+	check for utm and store in cookie
+	XX if AC form on page, set onsubmit on the form(s) 
+	XX onsubmit=>copy email from submitted form into hidden form, copy utms into hidden form from cookie, submit hidden form, submit visible form
+	if utms cookie, add hidden utm fields to AC form(s) on page, if there are any on page, load the utm values into fields
+> AC
+	XX create hidden form and utm variable custom fields
+	V create utm variable custom fields
+		UTM_source_original
+		UTM_medium_original
+		UTM_campaign_original
+		UTM_content_original
+		UTM_term_original
+		UTM_source_latest
+		UTM_medium_latest
+		UTM_campaign_latest
+		UTM_content_latest
+		UTM_term_latest
+
+	create automation to manage utm variables: if utm_source_latest variable changes, trigger automation;  if utm_source_original is empty, move all utm variables from _latest to _original
+	** must webhook to a Zap to update the _original custom variable because AC does not provide method to update one field from another
+
+
+??Can dynamically add the utm custom variables to any form?  YES, which makes sense, they can use a default form processor rather than a separate one for each form which is crazy
+
+testing
+
+<div class="_form_element _field65 _full_width "><input type="hidden" name="field[65]" value="howtomanageasmalllawfirm.com//bootcamp-september-2019/" data-name="form_originating_url"></div>
+
+jQuery('div._form-content').append('<div class="_form_element _field65 _full_width "><input type="hidden" name="field[65]" value="howtomanageasmalllawfirm.com/testing/" data-name="form_originating_url"></div>');
+
+"76":"utmsourcelatest","77":"utmmediumlatest","78":"utmcampaignlatest","79":"utmcontentlatest","80":"utmtermlatest"};
+
+<div class="_form_element _field76 _full_width "><input type="hidden" name="field[76]" value="" data-name="utm_source_latest"></div>
+<div class="_form_element _field77 _full_width "><input type="hidden" name="field[77]" value="" data-name="utm_medium_latest"></div>
+<div class="_form_element _field78 _full_width "><input type="hidden" name="field[78]" value="" data-name="utm_campaign_latest"></div>
+<div class="_form_element _field79 _full_width "><input type="hidden" name="field[79]" value="" data-name="utm_content_latest"></div>
+<div class="_form_element _field80 _full_width "><input type="hidden" name="field[80]" value="" data-name="utm_term_latest"></div>

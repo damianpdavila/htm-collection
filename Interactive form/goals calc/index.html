@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Interactive Form Experiment</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+    <script type="text/javascript" src="calc-goals.js"></script>
+
+    <link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-plaza.css" />
+    <script src="https://github.hubspot.com/odometer/odometer.js"></script>
+    
+  </head>
+
+  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!--
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>         
+  
+      <link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-plaza.css" />
+      <script src="https://github.hubspot.com/odometer/odometer.js"></script>
+  
+  
+  
+    <body class="bg-light">
+  
+      <div id="goals-calc" class="container">
+        <!--
+        <div class="py-5 text-center">
+          <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+  
+          <h2>Calc</h2>
+          <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        </div>
+        -->
+        <div class="row">
+          <div class="col-md-6 order-md-2 mb-4 stick-top">
+              <h4 class="d-flex justify-content-between align-items-center mb-2">
+                <span class="">Your Plan to Get There</span>
+                <!--
+                <span class="badge badge-secondary badge-pill">3</span>
+                -->
+              </h4>
+              <ul class="list-group mb-0">
+                <li class="list-group-item justify-content-between lh-condensed row">
+                  <div class="row mb-2">
+                      <div class="col-5">
+                          <h6 class="my-0">Revenue Goal</h6>
+                      </div>
+                      <div  class="col-7">
+                          <span id="outputAnnualRevenue" class="text-muted odometer float-right">0</span>
+                      </div>
+                  </div>
+                  <div class="row mb-2">
+                      <small class="text-muted col">Your firm's gross income needed to enable your personal income</small>
+                  </div>
+                </li>
+                <li class="list-group-item justify-content-between lh-condensed row">
+                  <div class="row mb-2">
+                      <div class="col-6">
+                          <h6 class="my-0">Weekly Revenue Target</h6>
+                      </div>
+                      <div class="col-6">
+                          <span id="outputWeeklyRevenue" class="text-muted odometer float-right">0</span>
+                      </div>
+                  </div>
+                  <div class="row mb-2">
+                      <small class="text-muted col">Not counting precious vacation weeks, of course!</small>
+                  </div>
+                </li>
+                <li class="list-group-item justify-content-between lh-condensed row">
+                  <div class="row mb-2">
+                      <div class="col-6">
+                          <h6 class="my-0">Hourly Rate</h6>
+                      </div>
+                      <div class="col-6">
+                          <span id="outputHourlyRate" class="text-muted odometer float-right">0</span>
+                      </div>
+                  </div>
+                  <div class="row mb-2">
+                      <small class="text-muted col">This is the rate required to enjoy that personal income, working those weeks, and those hours</small>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6 order-md-1">
+              <h4 class="mb-2">Your Dream</h4>
+              <form class="needs-validation" novalidate>
+      
+                  <div class="mb-0">
+                  <label for="inputIncome">Goal Income</label>
+                  <input type="text" class="form-control" id="inputIncome" placeholder="How much personal income do you deserve this year?" value="" required>
+                  <div class="invalid-feedback">
+                      Valid amount is required.
+                  </div>
+                  </div>
+                  <div class="mb-0">
+                  <label for="inputMargin">Profit Margin</label>
+                  <input type="text" class="form-control" id="inputMargin" placeholder="What is your firm's profit margin %? Not sure use 40" value="" required>
+                  <div class="invalid-feedback">
+                      Valid amount is required.
+                  </div>
+                  </div>
+      
+                  <div class="mb-0">
+                  <label for="inputWeeks">Vacation Goals</label>
+                  <input type="text" class="form-control" id="inputWeeks" placeholder="How many weeks of vacation or time off would you like this year?" value="" required>
+                  <div class="invalid-feedback">
+                      Valid amount is required.
+                  </div>
+                  </div>
+                  <div class="mb-0">
+                  <label for="inputHours">Work Hours</label>
+                  <input type="text" class="form-control" id="inputHours" placeholder="How many hours per week would you want to work?" value="" required>
+                  <div class="invalid-feedback">
+                      Valid amount is required.
+                  </div>
+                  </div>
+                  <button style="display:none;" class="btn" type="submit">Dummy button to force default validation in jQuery</button>
+              </form>
+              </div>
+        
+        </div>
+  
+      </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!--
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+    <script src="../../../../assets/js/vendor/holder.min.js"></script>
+    -->
+  </body>
+</html>

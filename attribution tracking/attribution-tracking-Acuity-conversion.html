@@ -1,0 +1,82 @@
+<!-- Begin Acuity secondary attribution tracking from conversion tracking in Acuity -->
+<script type="text/javascript">
+
+    // Cannot directly get UTMs because cross-domain. Therefore, send message to parent window to retrieve and send back.
+
+    // Let's get ready for our response
+
+    if (window.addEventListener) {
+        // For standards-compliant web browsers
+        window.addEventListener("message", processMessage, false);
+    }
+    else {
+        window.attachEvent("onmessage", processMessage);
+    }
+
+    // Set a timeout just in case
+    const NO_RESPONSE_QS = '?utm_source=acuity&utm_medium=website&utm_campaign=acuity_conversion_not-htmpage_not-unbouncepage';
+    var timer_handle = setTimeout( () => {
+        sendAttributionTrackingAcuityConversion(NO_RESPONSE_QS);
+    }, 10000);
+
+    // Send message to ask for topmost page's querystring
+    const POST_MESSAGE_QUERYSTRING = "HTM.appointment.querystring";
+    var message_payload = {
+        'type' : POST_MESSAGE_QUERYSTRING,
+        'querystring' : '',
+        'originatingurl' : ''
+    }
+    var containerWin = window.top;
+    containerWin.postMessage(message_payload, "*");
+
+    
+    function processMessage (evt) {
+
+        var message = "I got " + evt.data + " from " + evt.origin;
+        console.log(message);
+        if (evt.data.hasOwnProperty('type') && evt.data['type'] == POST_MESSAGE_QUERYSTRING ) {
+            clearTimeout(timer_handle);
+            sendAttributionTrackingAcuityConversion(evt.data['querystring'], evt.data['originatingurl']); 
+        }
+    }
+
+    function sendAttributionTrackingAcuityConversion(query_string, sending_url="") {
+
+        var UTM_SOURCE = 'utm_source';
+        var UTM_MEDIUM = 'utm_medium';
+        var UTM_CAMPAIGN = 'utm_campaign';
+
+        var utm_params = {
+            'utm_source': '',
+            'utm_medium': '',
+            'utm_campaign': ''
+        };
+
+        // Get UTM parameters. No need to check for empty/null params as all we want to do is capture exactly what is on the containing page's URL.
+        utm_params = parseUtm(utm_params, query_string);
+
+        // Prepare the webhook call
+        const ZAPIER_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/1481891/ovzidku/';
+        var webhookQuery = '?email=%email%&source=' + utm_params[UTM_SOURCE] 
+            + '&medium=' + utm_params[UTM_MEDIUM] + '&campaign=' + utm_params[UTM_CAMPAIGN] + '&referring_url=' + encodeURIComponent(sending_url);
+        fetch(ZAPIER_WEBHOOK + webhookQuery)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(myJson) {
+                console.log(JSON.stringify(myJson));
+            });
+
+    };
+
+    function parseUtm(utm_params, param_string) {
+        const urlParams = new URLSearchParams(param_string);
+
+        for (const term in utm_params) {
+            utm_params[term] = urlParams.get(term);
+        }
+        return utm_params;
+    }
+
+</script>
+<!-- End Acuity secondary attribution tracking from conversion tracking in Acuity -->

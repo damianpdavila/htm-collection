@@ -1,0 +1,100 @@
+<!-- Begin Priority appointment loader -->
+<style>
+    #priority-appointment {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.1em;
+    border-top: 1px solid lightgrey;
+    padding-top: .5em;
+    background-color: white;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: .25em;
+    margin-bottom: 10px;
+    }
+    #priority-appointment p span {
+    font-weight: 800;
+    }
+</style>
+<script type="text/javascript">
+
+    jQuery('document').ready( function() {
+
+        // Suppress site-wide appointment loader code for testing changes; remove this code on the page containing updated code
+        if (window.location.search.toLowerCase().indexOf('appt-testing') > -1) { 
+            return true;
+        }
+
+        var utm_params = {
+            'utm_source': '',
+            'utm_medium': '',
+            'utm_campaign': '',
+            'utm_content': '',
+            'utm_term': '',
+            'referring_url': ''
+        };
+
+        // Get best source for UTM parameters
+        if (window.location.search.toLowerCase().indexOf('utm_source') > -1) {
+            utm_params = parseUtm(utm_params, window.location.search);
+        } else {
+            if (getCookieValue(UTM_SOURCE)) {
+                utm_params['utm_source'] = getCookieValue(UTM_SOURCE);
+                utm_params['utm_medium'] = getCookieValue(UTM_MEDIUM);
+                utm_params['utm_campaign'] = getCookieValue(UTM_CAMPAIGN);
+                utm_params['utm_content'] = getCookieValue(UTM_CONTENT);
+                utm_params['utm_term'] = getCookieValue(UTM_TERM);
+            } else {
+                    utm_params['utm_source'] = 'direct';
+                    utm_params['utm_medium'] = 'website';
+                    utm_params['utm_campaign'] = encodeURIComponent(window.location.href);
+                    utm_params['utm_content'] = '';
+                    utm_params['utm_term'] = '';
+            }
+        }
+
+        // Prep the UTM query string
+        var utm_parm_string = '';
+        for (const term in utm_params) {
+            utm_parm_string = utm_parm_string + '&' + term + '=' + utm_params[term];
+        }
+
+        var regular_appointment = 'appointmentType=299489';
+        var regular_calendar = 'calendarID=140955';
+        var priority_link =  '<div id="priority-appointment">' 
+            + '<img src="https://howtomanageasmalllawfirm.com/wp-content/uploads/2018/08/up-arrow-jb.png" alt="arrow" title="arrow" style="margin: 0 10px 0 0; max-height: 50px; width: auto; float: left; transform: rotate(90deg);">'
+            + '<p><span>No convenient times available?</span><a href="https://howtomanageasmalllawfirm.com/appointment-priority/?'
+            + utm_parm_string + '">  Click here to book a Priority Appointment</a></p>' 
+            + '</div>';
+
+        jQuery('iframe').map(function() {
+        if ( jQuery(this).attr('src') && ( jQuery(this).attr('src').includes(regular_appointment) || jQuery(this).attr('src').includes(regular_calendar) ) ) {
+            jQuery(this).parent().append(priority_link);
+        }
+        });
+
+    });
+
+    var UTM_SOURCE = 'htm_utm_source';
+    var UTM_MEDIUM = 'htm_utm_medium';
+    var UTM_CAMPAIGN = 'htm_utm_campaign';
+    var UTM_TERM = 'htm_utm_term';
+    var UTM_CONTENT = 'htm_utm_content';
+
+    function getCookieValue(cookieName) {
+        var b = document.cookie.match('(^|;)\\s*' + cookieName + '\\s*=\\s*([^;]+)');
+        return b ? b.pop() : '';
+    }
+    function parseUtm(utm_params, param_string) {
+        const urlParams = new URLSearchParams(param_string);
+
+        for (const term in utm_params) {
+            utm_params[term] = urlParams.get(term);
+        }
+        return utm_params;
+    }
+
+</script>
+<!-- End Priority appointment loader -->

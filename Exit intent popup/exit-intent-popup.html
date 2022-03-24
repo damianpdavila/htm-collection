@@ -1,0 +1,54 @@
+<!-- Begin exit intent pop-up -->
+<span id="exit-intent" class="sg-popup-hover-60359" style="display: none;">Exit Intent PopUp Trigger</span>
+<script type="text/javascript">
+var SUPPRESSED_POPUP_COOKIE = "htm_suppress_popup";
+jQuery(document).ready(function() {
+    // Suppress site-wide pop-up code for testing changes; remove this code on the page containing updated popup code
+    if (window.location.search.toLowerCase().indexOf('popup-testing') > -1) { 
+        return true;
+    }
+    var cookieMaxAge = 24*60*60; // one day in seconds
+    var suppressedPopup = document.cookie.split(";").filter((item) => item.trim().startsWith(SUPPRESSED_POPUP_COOKIE)).length
+    if (suppressedPopup) {
+        return true;
+    } else {
+        jQuery(document).on("mouseout", evt => {
+            if( evt.clientY < 5 ) {
+                jQuery(document).off("mouseout");
+                // Use popup defined on page, else use default popup defined in popup plugin settings.
+                // Note: can suppress popup on page-by-page basis by including the override on page but not including a popup class name
+                if ( jQuery("#exit-intent-override").length ) {
+                    jQuery("#exit-intent-override").mouseover();
+                } else {
+                    jQuery("#exit-intent").mouseover();
+                }
+            }
+        });
+    }
+    // Suppress the popup for a day if form was submitted on page.  Don't upset visitors that took action already.
+    jQuery("form").submit( function(evt) {
+        suppressPopup(cookieMaxAge);
+        return true;
+    });
+    // Suppress popup on thank you pages 
+    // -- scan title for "thank you"
+    var reTitle = /thank you/gi;
+    if (reTitle.test( document.title ) ) {
+        suppressPopup(0);
+        return true;
+    }
+    // -- scan slug for -ty  (<link> tag in <head>)
+    var reSlug = /-ty\/?$/i;
+    if (reSlug.test( window.location.pathname )) {
+        suppressPopup(0);
+        return true;
+    }
+});
+function suppressPopup(cookieAge=0) {
+    jQuery(document).off("mouseout");
+    if (cookieAge) {
+        document.cookie = SUPPRESSED_POPUP_COOKIE + "=true ;path=/ ;samesite=lax ;max-age=" + cookieAge.toString();
+    }
+}
+</script>
+<!-- End exit intent pop-up -->

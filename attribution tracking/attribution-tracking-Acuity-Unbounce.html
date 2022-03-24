@@ -1,0 +1,154 @@
+<!-- Begin Acuity attribution tracking for Unbounce -->
+<script type="text/javascript">
+
+    (function () {
+        // Suppress site-wide acuity tracking code for testing changes; remove this code on the page containing updated code
+        if (window.location.search.toLowerCase().indexOf('acuity-testing') > -1)  
+            return;
+
+        if (window.addEventListener) {
+            // For standards-compliant web browsers
+            window.addEventListener("load", () => {
+                respondToAcuityConversionTracking();
+                validateAcuityIsLoaded();
+            }, false);
+        }
+        else {
+            window.attachEvent("onload", () => {
+                respondToAcuityConversionTracking();
+                validateAcuityIsLoaded();
+            });
+        }
+
+        function validateAcuityIsLoaded() {
+            // Check if Acuity iframe has loaded; in theory this is not necessary because window.onload should wait for everything including iframes to finish loading.
+            const acuity_src = 'app.acuityscheduling.com/schedule.php';
+            let acuity_src_utm;
+            let theFrames = document.querySelectorAll('iframe');
+            var cntCheckForAcuity = 0;
+            var intervalAcuity;
+            // Retry for a bit since Acuity sometimes can be slow.
+            intervalAcuity = setInterval(function() {
+                for (const frameElement of theFrames) {
+                    if (frameElement.getAttribute('src') && (frameElement.getAttribute('src').includes(acuity_src) ) ) {
+                        clearInterval(intervalAcuity);
+                        loadAttributionTrackingAcuity();
+                        break;
+                    }
+                };
+                cntCheckForAcuity++;
+                if (cntCheckForAcuity > 10) {
+                    // No Acuity schedulers on page, or Acuity is taking REALLY long to load.
+                    clearInterval(intervalAcuity);
+                    // Try anyway just in case; it won't hurt anything.
+                    loadAttributionTrackingAcuity();
+                };
+            }, 1000);
+
+        };
+
+    
+        function loadAttributionTrackingAcuity() {
+
+            var UTM_SOURCE = 'utm_source';
+            var UTM_MEDIUM = 'utm_medium';
+            var UTM_CAMPAIGN = 'utm_campaign';
+            var UTM_TERM = 'utm_term';
+            var UTM_CONTENT = 'utm_content';
+            var REFERRING_URL = 'referring_url';
+
+            var utm_params = {
+                'utm_source': '',
+                'utm_medium': '',
+                'utm_campaign': '',
+                'utm_content': '',
+                'utm_term': '',
+                'referring_url': ''
+            };
+            const acuity_fields = {
+                'utm_source': 'field:7300773',
+                'utm_medium': 'field:7300775',
+                'utm_campaign': 'field:7300777',
+                'utm_content': 'field:7300781',
+                'utm_term': 'field:7300782',
+                'referring_url': 'field:7300788'
+            }
+
+            // Get best source for UTM parameters
+            utm_params = parseUtm(utm_params, window.location.search);
+            if (utm_params[UTM_SOURCE] == null || utm_params[UTM_SOURCE].length == 0 ) {
+                utm_params[UTM_SOURCE] = 'unbounce';
+                utm_params[UTM_MEDIUM] = 'website';
+                utm_params[UTM_CAMPAIGN] = encodeURIComponent(window.location.href);
+                utm_params[UTM_TERM] = '';
+                utm_params[UTM_CONTENT] = '';
+            }
+            utm_params[REFERRING_URL] = encodeURIComponent(window.location.href);
+            // Prep the Acuity query string
+            var acuity_param = '';
+            for (const term in utm_params) {
+                acuity_param = acuity_param + '&' + acuity_fields[term] + '=' + utm_params[term];
+            }
+
+            const acuity_src = 'app.acuityscheduling.com/schedule.php';
+            var acuity_src_utm;
+            
+            // Append the Acuity query string on any Acuity iframes
+            var theFrames = document.querySelectorAll('iframe');
+
+            theFrames.forEach(frameElement => {
+                if (frameElement.getAttribute('src') && (frameElement.getAttribute('src').includes(acuity_src) ) ) {
+                    acuity_src_utm = frameElement.getAttribute('src') + acuity_param;
+                    frameElement.setAttribute('src', acuity_src_utm);
+                }
+            });
+
+
+        };
+
+        function parseUtm(utm_params, param_string) {
+            const urlParams = new URLSearchParams(param_string);
+
+            for (const term in utm_params) {
+                utm_params[term] = urlParams.get(term);
+            }
+            return utm_params;
+        }
+
+        // The appointment conversion tracking script in Acuity will request the query parameters of the page hosting the appointment widget.
+        // This is in place as a auxiliary/backup method of getting appointment tracking parameters. That script will then send the UTMs on to ActiveCampaign.
+        function respondToAcuityConversionTracking() {
+            
+            // Let's listen for the messages
+            if (window.addEventListener) {
+                // For standards-compliant web browsers
+                window.addEventListener("message", processMessage, false);
+            }
+            else {
+                window.attachEvent("onmessage", processMessage);
+            }
+        };
+        
+        function processMessage (evt) {
+
+            var message = "I got " + evt.data + " from " + evt.origin;
+            console.log(message);
+            const POST_MESSAGE_QUERYSTRING = "HTM.appointment.querystring";
+
+            if (evt.data.hasOwnProperty('type') && evt.data['type'] == POST_MESSAGE_QUERYSTRING ) {
+                // Reply with querystring
+                var message_payload = {
+                    'type' : POST_MESSAGE_QUERYSTRING,
+                    'querystring' : window.location.search,
+                    'originatingurl' : window.location.href
+                }
+                evt.source.postMessage(message_payload, "*");
+            }
+
+        };
+
+
+    })();
+
+</script>
+<!-- End Acuity attribution tracking for Unbounce -->

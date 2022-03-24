@@ -1,0 +1,29 @@
+<!-- Copy querystring to link/button code starts here -->
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Suppress site-wide querystring to link code for testing changes; remove this code on the page containing updated qs to link code
+    if (window.location.search.toLowerCase().indexOf('qs-link-testing') > -1) { 
+        return true;
+    }
+
+    const QUERYSTRING_REPLACEMENT = '%QUERYSTRING%';
+
+    // Get the query string
+    var qs = window.location.search;
+    
+    var links = document.querySelectorAll('a');
+    var newHref;
+
+    links.forEach(link => {
+        if ( (link.hasAttribute('href')) && (link.getAttribute('href').includes(QUERYSTRING_REPLACEMENT)) ) {
+            //Replace the literal
+            newHref = link.getAttribute('href').replace(QUERYSTRING_REPLACEMENT, qs);
+            link.setAttribute('href', newHref);
+        }
+    });
+
+});
+</script>
+<!-- Copy querystring to link/button code ends here -->

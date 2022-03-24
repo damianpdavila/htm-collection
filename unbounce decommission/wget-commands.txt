@@ -1,0 +1,17 @@
+C:\"Program Files"\wget\wget --mirror --convert-links --adjust-extension --page-requisites --no-parent -i unbounce_urls.txt
+
+C:\"Program Files"\wget\wget --mirror --convert-links --adjust-extension --page-requisites --no-parent --wait=2 --random-wait -e robots=off -i https://promo.howtomanageasmalllawfirm.com/watch-iolta/
+
+C:\"Program Files"\wget\wget --mirror --convert-links --adjust-extension --page-requisites --no-parent --wait=2 --random-wait --no-directories -e robots=off -i https://promo.howtomanageasmalllawfirm.com/watch-iolta/
+
+C:\"Program Files"\wget\wget --mirror --convert-links --adjust-extension --page-requisites --no-parent --wait=2 --random-wait -e robots=off https://promo.howtomanageasmalllawfirm.com/watch-iolta/
+
+C:\"Program Files"\wget\wget --mirror --convert-links --adjust-extension --page-requisites --no-parent --wait=2 --random-wait -e robots=off https://promo.howtomanageasmalllawfirm.com/watch-iolta/index.html
+
+------
+
+C:\"Program Files"\wget\wget --mirror --convert-links --adjust-extension --page-requisites --no-parent --wait=2 --random-wait https://promo.howtomanageasmalllawfirm.com/watch-iolta/
+
+---- Final
+
+C:\"Program Files"\wget\wget -E -H -k -K -p --wait=2 --random-wait -i unbounce_urls.txt

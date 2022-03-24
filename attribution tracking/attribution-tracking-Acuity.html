@@ -1,0 +1,167 @@
+<!-- Begin Acuity attribution tracking -->
+<script type="text/javascript">
+
+    (function () {
+        // Suppress site-wide acuity tracking code for testing changes; remove this code on the page containing updated code
+        
+        if (window.location.search.toLowerCase().indexOf('acuity-testing') > -1)  
+            return;
+
+        if (window.addEventListener) {
+            // For standards-compliant web browsers
+            window.addEventListener("load", setupTracking, false);
+        }
+        else {
+            window.attachEvent("onload", setupTracking);
+        }
+
+        function setupTracking() {
+            respondToAcuityConversionTracking();
+            loadAttributionTrackingAcuity();
+        };
+
+        function loadAttributionTrackingAcuity() {
+
+            // If this is a page for an SDR to set an appointment, bypass this script because the SDR page is self-contained
+            if (window.HTM_GLOBAL_IS_SDR_PAGE)
+                return;
+
+            // On certain appointment pages we may want to force specific tracking parameters.  Override with a div and embed values in data-* params.
+            var ACUITY_TRACKING_OVERRIDE = false;
+            if (document.querySelector('#acuity-tracking-override') !== null) {
+                ACUITY_TRACKING_OVERRIDE = true;
+            }
+
+            var UTM_SOURCE = 'utm_source';
+            var UTM_MEDIUM = 'utm_medium';
+            var UTM_CAMPAIGN = 'utm_campaign';
+            var UTM_TERM = 'utm_term';
+            var UTM_CONTENT = 'utm_content';
+            var REFERRING_URL = 'referring_url';
+            var LEAD_SOURCE = 'lead_source';
+
+
+            var utm_params = {
+                'utm_source': '',
+                'utm_medium': '',
+                'utm_campaign': '',
+                'utm_content': '',
+                'utm_term': '',
+                'referring_url': '',
+                'lead_source': ''
+            };
+            const acuity_fields = {
+                'utm_source': 'field:7300773',
+                'utm_medium': 'field:7300775',
+                'utm_campaign': 'field:7300777',
+                'utm_content': 'field:7300781',
+                'utm_term': 'field:7300782',
+                'referring_url': 'field:7300788',
+                'lead_source' : 'field:9893266'
+            }
+
+            // Get best source for UTM parameters
+            if (ACUITY_TRACKING_OVERRIDE && (getOverrideValue(UTM_SOURCE) != null ) ) {
+                utm_params[UTM_SOURCE] = getOverrideValue(UTM_SOURCE);
+                utm_params[UTM_MEDIUM] = getOverrideValue(UTM_MEDIUM);
+                utm_params[UTM_CAMPAIGN] = getOverrideValue(UTM_CAMPAIGN);
+                utm_params[UTM_CONTENT] = getOverrideValue(UTM_CONTENT);
+                utm_params[UTM_TERM] = getOverrideValue(UTM_TERM);
+                utm_params[LEAD_SOURCE] = getOverrideValue(LEAD_SOURCE);
+            } else {
+                utm_params = parseUtm(utm_params, window.location.search);
+                if (utm_params[UTM_SOURCE] == null || utm_params[UTM_SOURCE].length == 0 ) {
+                    if (getCookieValue(UTM_SOURCE)) {
+                        utm_params[UTM_SOURCE] = getCookieValue(UTM_SOURCE);
+                        utm_params[UTM_MEDIUM] = getCookieValue(UTM_MEDIUM);
+                        utm_params[UTM_CAMPAIGN] = getCookieValue(UTM_CAMPAIGN);
+                        utm_params[UTM_CONTENT] = getCookieValue(UTM_CONTENT);
+                        utm_params[UTM_TERM] = getCookieValue(UTM_TERM);
+                        utm_params[LEAD_SOURCE] = '';
+                    } else {
+                        utm_params[UTM_SOURCE] = 'direct';
+                        utm_params[UTM_MEDIUM] = 'website';
+                        utm_params[UTM_CAMPAIGN] = encodeURIComponent(window.location.href);
+                        utm_params[UTM_CONTENT] = '';
+                        utm_params[UTM_TERM] = '';
+                        utm_params[LEAD_SOURCE] = '';
+                    }
+                }
+            }
+            utm_params[REFERRING_URL] = encodeURIComponent(window.location.href);
+            // Prep the Acuity query string
+            let acuity_param = '';
+            for (const term in utm_params) {
+                acuity_param = acuity_param + '&' + acuity_fields[term] + '=' + utm_params[term];
+            }
+
+            let acuity_src_utm = '';
+            
+            // Append the Acuity query string on any and all Acuity iframes
+            let theFrames = document.querySelectorAll('iframe[src*="app.acuityscheduling.com"]');
+
+            theFrames.forEach(frameElement => {
+                acuity_src_utm = frameElement.getAttribute('src') + acuity_param;
+                frameElement.setAttribute('src', acuity_src_utm);
+            });
+
+
+        };
+
+        function getCookieValue(cookieName) {
+            var b = document.cookie.match('(^|;)\\s*' + 'htm_' + cookieName + '\\s*=\\s*([^;]+)');
+            return b ? b.pop() : '';
+        }
+        function parseUtm(utm_params, param_string) {
+            const urlParams = new URLSearchParams(param_string);
+
+            for (const term in utm_params) {
+                utm_params[term] = urlParams.get(term);
+            }
+            return utm_params;
+        }
+        // The UTM override values are stored in element with specific ID and data-* attributes corresponding to the override values.
+        // e.g.  <div id="acuity-tracking-override" data-utm_source="src" data-utm_medium="med" ... etc.></div>
+        function getOverrideValue(utmName) {
+            return (document.querySelector('#acuity-tracking-override').dataset[utmName] ?
+                    document.querySelector('#acuity-tracking-override').dataset[utmName] : "") ;
+        }
+
+        // The appointment conversion tracking script in Acuity will request the query parameters of the page hosting the appointment widget.
+        // This is in place as a auxiliary/backup method of getting appointment tracking parameters. That script will then send the UTMs on to ActiveCampaign.
+        function respondToAcuityConversionTracking() {
+            
+            // Let's listen for the messages
+            if (window.addEventListener) {
+                // For standards-compliant web browsers
+                window.addEventListener("message", processMessage, false);
+            }
+            else {
+                window.attachEvent("onmessage", processMessage);
+            }
+        };
+        
+        function processMessage (evt) {
+
+            var message = "I got " + evt.data + " from " + evt.origin;
+            console.log(message);
+            const POST_MESSAGE_QUERYSTRING = "HTM.appointment.querystring";
+
+            if (evt.data.hasOwnProperty('type') && evt.data['type'] == POST_MESSAGE_QUERYSTRING ) {
+                // Reply with querystring
+                var message_payload = {
+                    'type' : POST_MESSAGE_QUERYSTRING,
+                    'querystring' : window.location.search,
+                    'originatingurl' : window.location.href
+                }
+                evt.source.postMessage(message_payload, "*");
+            }
+
+        };
+
+        
+    })();
+
+
+</script>
+<!-- End Acuity attribution tracking -->

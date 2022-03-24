@@ -1,0 +1,22 @@
+<!-- Begin image alt text default loader -->
+<script type="text/javascript">
+
+    jQuery(document).ready(function() {
+
+        // Suppress site-wide image alt text code (if applicable) for testing changes; remove this code on the page containing updated code
+        if (window.location.search.toLowerCase().indexOf('alt-text-testing') > -1) { 
+            return true;
+        }
+        let page_title = document.title.replace(/[-_]/g, " ");
+        let image_title;
+
+        // If image has no alt text, fill it with title or page title
+        jQuery('img[alt=""]').each(function(idx){
+            image_title = this.title.replace(/[_-]/g, " ");
+            this.alt = image_title.length ? image_title : page_title;
+        });
+
+    });
+
+</script>
+<!-- End image alt text default loader -->

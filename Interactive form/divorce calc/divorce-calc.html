@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Interactive Form Experiment: Divorce Calculator</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-default.css" />
+    <script src="https://github.hubspot.com/odometer/odometer.js"></script>
+    
+  </head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>         
+  
+  <link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-default.css" />
+  <script src="https://github.hubspot.com/odometer/odometer.js"></script>
+
+  <link href="form-validation.css" rel="stylesheet">
+  <link href="icalc-divorce.css" rel="stylesheet">
+  <script type="text/javascript" src="icalc-divorce.js"></script>
+  
+  
+  <body class="bg-light">
+
+    <div id="divorce-calc" class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="call-now-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <h5><strong>Sorry!</strong> We can't calculate guesstimates with</h5>
+              <h4>"I want it all and I want it now" people :/</h4>
+              <h4>You gotta talk to someone!!!</h4>
+              <h3>CALL 555-555-5555</h3>
+              <h5>or click here to schedule a call right now!</h5>
+              <small>(right now, just the way you like it)</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="entry-form" class="">
+        <div class="row">
+          <div class="col-md-6 text-white bg-dark">
+              <h2 class="display-3 text-right mb-4">
+                <strong><span class="">DIVORCE</span></strong>
+              </h2>
+              <div style="height: 20px;"></div>
+              <h4 class="text-center font-weight-bold">
+                  <span class="">ARE YOU UP AT NIGHT WONDERING</span>
+              </h4>
+              <ul class="dash-circle-bullet mb-4">
+                <li class="mb-2">
+                  <span class="">How long will it take?</span>
+                </li>
+                <li class="mb-2">
+                    <span class="">What will attorneys fees cost?</span>
+                </li>
+                <li class="mb-2">
+                  <span class="">How much alimony?</span>
+                </li>
+              </ul>
+              <img class="mb-4 ml-4" style="height: 40px; width: auto;" src="https://howtomanageasmalllawfirm.com/wp-content/uploads/2019/09/diagonal-arrow-white.png"/>
+              <h4 class="text-center font-weight-bold" style="font-size: 32px;">
+                  <span class="">NO MORE SLEEPLESS NIGHTS</span>
+              </h4>
+              <div class="text-center mb-4" style="color: #aaa;">Calculate what your life could look like after divorce using this</div>
+              <h3 class="text-center mb-4">
+                  <span class="">DIVORCE CALCULATOR</span>
+              </h3>
+              <img class="mb-4 ml-4" style="height: 60px; width: auto; transform: rotate(-90deg);" src="https://howtomanageasmalllawfirm.com/wp-content/uploads/2019/09/diagonal-arrow-white.png"/>
+              <p class="text-center mb-4">USE THIS CALCULATOR TO FIND OUT<br>THE BEST GUESTIMATE<br>ANYONE CAN GIVE YOU WITHOUT TALKING TO YOU</p>
+            </div> <!-- first column -->
+
+            <div class="col-md-6 bg-white">
+              <h2 class="display-3 text-left mb-4">
+                <strong><span class="">CALCULATOR</span></strong>
+              </h2>
+              <div style="height: 20px;"></div>
+              <h4 class="text-center mb-0">
+                  <span class="">STOP GUESSING.<br>START PLANNING</span>
+              </h4>
+              <h4 class="text-center font-weight-bold mb-4" style="font-size: xx-large;">
+                  <span class="">YOUR NEW LIFE</span>
+              </h4>
+
+
+              <div class="row justify-content-center">
+                <div class="col-8 border py-4 px-5">
+                    <div class="_form_210"></div>
+                    <script src="https://howtomanage.activehosted.com/f/embed.php?id=210" type="text/javascript" charset="utf-8"></script>
+                </div><!-- end of form col -->
+              </div><!-- end of form row -->
+            </div> <!-- second column -->
+          </div> <!-- row -->
+        </div> <!-- id="entry-form" -->
+
+        <!-- ##### CALCULATOR PAGE ####### -->
+        <div id="calc-form">
+          <form>
+          <div class="row">
+            <div class="col">
+              <h2 class="text-center mb-2">
+                DIVORCE CALCULATOR
+              </h2>
+              <h3 class="text-center mb-2 text-muted">
+                USE THIS CALCULATOR TO FIND OUT <strong>THE BEST GUESSTIMATE</strong> ANYONE CAN GIVE YOU WITHOUT TALKING TO YOU
+              </h3>
+            </div>
+          </div> <!-- row 1 -->
+
+          <div class="row">
+            <div class="col bg-dark text-light p-3 input-pane">
+              <div class="mb-3">
+                <label for="your-reasonable">How reasonable are you?</label>
+                <select class="custom-select d-block w-100 mb-4" id="your-reasonable" >
+                  <option value="0">Choose...</option>
+                  <option value="5">I'm a pain in the butt</option>
+                  <option value="4">I used to be nice, now I'm bitter</option>
+                  <option value="3">I scheduled appt with shrink</option>
+                  <option value="2">Shrink is on retainer</option>
+                  <option value="1">Friends & family are on my side</option>                  
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid option.
+                </div>
+              </div> <!-- end of control -->
+              <h4 class="mb-3">To me the most important thing is</h4>
+              <div class="d-block mb-4">
+                  <div class="custom-control custom-radio">
+                    <input id="yp-low" name="your-priority" type="radio" value="1" class="custom-control-input" checked="" >
+                    <label class="custom-control-label" for="yp-low">Lose 30 pounds and get on with my life</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input id="yp-med" name="your-priority" type="radio" value="1.5" class="custom-control-input" >
+                    <label class="custom-control-label" for="yp-med">Keep stuff</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input id="yp-high" name="your-priority" type="radio" value="2" class="custom-control-input" >
+                    <label class="custom-control-label" for="yp-high">I want it all and I want it now</label>
+                  </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col">
+                  <label for="your-income">My Income</label>
+                  <input type="text" class="form-control" id="your-income" placeholder="$" >
+                  <div class="invalid-feedback">
+                    Income amt required.
+                  </div>
+                </div>  <!-- end of control -->    
+                <div class="col">
+                  <label for="your-source">Source</label>
+                  <select class="custom-select d-block w-100" id="your-source" >
+                    <option value="0">Choose...</option>
+                    <option value="1">Business owner</option>
+                    <option value="0">Professional w/job</option>
+                    <option value="0">Executive</option>
+                    <option value="0">Manager</option>                  
+                    <option value="0">Hourly</option>
+                    <option value="0">Other</option>                  
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid option.
+                  </div>
+                </div> <!-- end of control -->
+              </div> <!-- end of row -->
+              <div class="custom-control custom-checkbox mb-3">
+                  <input type="checkbox" class="custom-control-input" id="kids">
+                  <label class="custom-control-label" for="kids">Any kids with this spouse?</label>
+              </div> <!-- end of control -->
+              <div id="kid-section">
+                <div class="form-group">
+                  <label for="num-kids">How Many?</label>
+                  <input type="text" class="form-control" id="num-kids" placeholder="" >
+                  <div class="invalid-feedback">
+                    Valid amt required.
+                  </div>
+                </div>
+                <h4>Ages</h4>
+                <div class="form-group">
+                  <label for="special-needs">Special Needs</label>
+                  <input type="text" class="form-control" id="special-needs" >
+                </div>
+              </div>    
+            </div><!-- col 1 -->
+
+            <div class="col p-3 input-pane">
+                <div class="mb-3">
+                    <label for="spouse-reasonable">How reasonable is your spouse?</label>
+                    <select class="custom-select d-block w-100 mb-4" id="spouse-reasonable" >
+                      <option value="0">Choose...</option>
+                      <option value="5">They are out for blood</option>
+                      <option value="4">They used to be on my side</option>
+                      <option value="3">They scheduled appt with shrink</option>
+                      <option value="2">They have shrink is on retainer</option>
+                      <option value="1">Friends & family chose to keep them</option>                  
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid option.
+                    </div>
+                  </div> <!-- end of control -->
+                  <h4 class="mb-3">To them the most important thing is</h4>
+                  <div class="d-block mb-4">
+                      <div class="custom-control custom-radio">
+                        <input id="sp-low" name="spouse-priority" type="radio" value="1" class="custom-control-input" checked="">
+                        <label class="custom-control-label" for="sp-low">Lose 30 pounds and get on with their life</label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input id="sp-med" name="spouse-priority" type="radio" value="1.5" class="custom-control-input" >
+                        <label class="custom-control-label" for="sp-med">Keep stuff</label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input id="sp-high" name="spouse-priority" type="radio" value="2" class="custom-control-input" >
+                        <label class="custom-control-label" for="sp-high">They want it all and they want it now</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col mb-3">
+                      <label for="spouse-income">Their Income</label>
+                      <input type="text" class="form-control" id="spouse-income" placeholder="$" >
+                      <div class="invalid-feedback">
+                        Income amt required.
+                      </div>
+                    </div>  <!-- end of control -->    
+                    <div class="col">
+                      <label for="spouse-source">Source</label>
+                      <select class="custom-select d-block w-100" id="spouse-source" >
+                        <option value="0">Choose...</option>
+                        <option value="1">Business owner</option>
+                        <option value="0">Professional w/job</option>
+                        <option value="0">Executive</option>
+                        <option value="0">Manager</option>                  
+                        <option value="0">Hourly</option>
+                        <option value="0">Other</option>                  
+                      </select>
+                      <div class="invalid-feedback">
+                        Please select a valid option.
+                      </div>
+                    </div> <!-- end of control -->
+                  </div> <!-- end of row -->
+            </div><!-- col 2 -->
+
+            <div class="col-3 text-light p-3 stick-top h-50" style="background-color: #555;">
+              <h5 class="text-center mb-4">GUESSTIMATE</h5>
+              <div class="calc-output mb-5 text-center">
+                <h6 class="text-muted">TIME</h6>
+                <div><span id="output-time" class="odometer"></span> MONTHS</div>
+              </div>
+              <div class="calc-output mb-5 text-center">
+                <h6 class="text-muted">COST</h6>
+                <div><span id="output-cost" class="odometer"></span></div>
+              </div>
+              <div class="calc-output mb-5 text-center">
+                <h6 class="text-muted">ALIMONY</h6>
+                <div><span id="output-alimony" class="odometer"></span></div>
+                <h6 class="text-muted">PER MONTH</h6>
+              </div>
+              <div class="calc-output mb-3 text-center">
+                <h6 class="text-muted">CHILD SUPPORT</h6>
+                <div><span id="output-childsupport" class="odometer"></span></div>
+                <h6 class="text-muted">PER MONTH</h6>
+              </div>
+        
+            </div>
+          </div><!-- row 2 -->
+
+        </div> <!-- id-"calc-form" -->
+        </form>
+    </div> <!-- id="divorce-calc" -->
+
+  </body>
+</html>

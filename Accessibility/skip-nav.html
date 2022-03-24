@@ -1,0 +1,30 @@
+<!-- Begin ADA-compliance skip nav link -->
+<style>
+    .skipnav { text-align: left; }
+    .skipnav a { 
+        position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; 
+    }
+    .skipnav a:focus, .skipnav a:focus-within { 
+        left: 6px;
+        top: 7px;
+        height: auto;
+        width: auto;
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 15px 23px 14px;
+        background-color: #fff;
+        color: #4f5c64;
+        z-index: 100000;
+        line-height: normal;
+        text-decoration: none;
+        box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
+        overflow: visible;        
+    }
+</style>
+<script type="text/javascript">
+    jQuery('document').ready( function() {
+        jQuery('body').prepend('<div class="skipnav"><a href="#main">Skip to main content</a></div>');
+    });
+</script>
+<!-- End ADA-compliance skip nav link -->

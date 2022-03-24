@@ -1,0 +1,260 @@
+<div class="appointment-extras main_color">
+    <form>
+        <label for="lead-source">First enter the Lead Source:</label>
+        <input name="lead-source" type="text" class="text_input">
+        <div id="booking-notes-section">
+            <label for="booking-notes">Notes for Sales Team (optional):</label>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</div>
+<style>
+    #top .appointment-extras.main_color {
+        border: 1px solid #ddd;
+        padding: 1em;
+        margin-bottom: 1em;
+        box-shadow: 0 0 25px #efefefaa;
+    }
+    #top .appointment-extras form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: normal;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+    #top #booking-notes-section {
+        width: 100%;
+    }
+    #top .appointment-extras input {
+        width: 100%;
+        padding: .5em;
+    }
+    #top .appointment-extras textarea {
+        width: 100%;
+        max-width: 100%;
+        height: 6em;
+        padding: .5em;
+    }
+
+    #top .appointment-extras button {
+        font-size: 18px;
+        padding: 0em 2em;
+        border: none;
+        background-color: #4f5c64;
+        color: #eee;
+        height: 2em;
+    }
+    #top .appointment-extras input:focus,
+    #top .appointment-extras textarea:focus {
+        border-color: red;
+    }
+    #top .appointment-extras label {
+        font-weight: inherit;
+        font-family: inherit;
+        width: 100%;
+    }
+    #top .appointment-extras .button {
+        display: none;
+    }
+    .avia_codeblock iframe {
+        min-height: 700px;
+    }
+    #frame-disabler {
+        background-color: rgba(255,255,255,.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 400px !important;
+        z-index: 10000;
+        width: 100%;
+    }
+</style>
+<script type="text/javascript">
+
+    // Set global to assert that this is a page for an SDR to set an appointment, thereby bypass the main attributiin script because the SDR page is self-contained
+    window.HTM_GLOBAL_IS_SDR_PAGE = true;
+
+    (function () {
+        // Suppress site-wide acuity tracking code for testing changes; remove this code on the page containing updated code
+        if (window.location.search.toLowerCase().indexOf('acuity-sdr-testing') > -1)  
+            return;
+
+        var acuity_url_initial = '';
+        if (window.addEventListener) {
+            // For standards-compliant web browsers
+            window.addEventListener("load", setupPage, false);
+        }
+        else {
+            window.attachEvent("onload", setupPage);
+        }
+        
+
+        function setupPage() {
+
+            acuity_url_initial = document.querySelector('iframe[src*="app.acuityscheduling.com"]').getAttribute('src');
+            
+            const lead_source_input = document.querySelector('.appointment-extras input');
+            lead_source_input.value = "";
+            lead_source_input.focus();
+
+            lead_source_input.addEventListener('focus', (event) => {
+                document.querySelector("#frame-disabler").setAttribute("style", "height: 400px !important;");
+            });
+
+            const booking_notes = document.querySelector('#booking-notes-section').appendChild(document.createElement("textarea"));
+            booking_notes.setAttribute("name", "booking-notes");
+            booking_notes.addEventListener('focus', (event) => {
+                document.querySelector("#frame-disabler").setAttribute("style", "height: 400px !important;");
+            });
+            
+            document.querySelector('.appointment-extras form').addEventListener('submit', (event) => {
+                event.stopImmediatePropagation();
+                event.preventDefault();
+                validateAndSaveLeadSource(event);
+            });
+
+        };
+
+        function validateAndSaveLeadSource(event) {
+            const lead_src_input = document.querySelector('.appointment-extras input');
+            if (lead_src_input.value == "") {
+                alert("Please specify the Lead Source");
+                window.setTimeout( () => {
+                    lead_src_input.focus();
+                }, 500);
+                document.querySelector("#frame-disabler").setAttribute("style", "height: 400px !important;");
+            } else {
+                document.querySelector("#frame-disabler").setAttribute("style", "height: 0px !important;");
+                setOverrideValue("lead_source", lead_src_input.value);
+                setOverrideValue("notes_for_sales_team", encodeURIComponent( document.querySelector('.appointment-extras textarea').value ) );
+                if (loadAttributionTrackingAcuitySdr) {
+                    loadAttributionTrackingAcuitySdr();
+                } else {
+                    // If cannot load tracking script, error and reload page to try again
+                    alert("Error: Cannot load tracking.  Click Ok to reload page.");
+                    location.reload();
+                };
+                document.activeElement.blur();
+            }
+            return;
+        }
+
+        // The UTM override values are stored in element with specific ID and data-* attributes corresponding to the override values.
+        // e.g.  <div id="acuity-tracking-override" data-utm_source="src" data-utm_medium="med" ... etc.></div>
+        function setOverrideValue(utmName, ovValue) {
+            document.querySelector('#acuity-tracking-override').dataset[utmName] = ovValue;
+            return;
+        }
+
+        function loadAttributionTrackingAcuitySdr() {
+
+            // On certain appointment pages we may want to force specific tracking parameters.  Override with a div and embed values in data-* params.
+            let ACUITY_TRACKING_OVERRIDE = false;
+            if (document.querySelector('#acuity-tracking-override') !== null) {
+                ACUITY_TRACKING_OVERRIDE = true;
+            }
+
+            let UTM_SOURCE = 'utm_source';
+            let UTM_MEDIUM = 'utm_medium';
+            let UTM_CAMPAIGN = 'utm_campaign';
+            let UTM_TERM = 'utm_term';
+            let UTM_CONTENT = 'utm_content';
+            let REFERRING_URL = 'referring_url';
+            let LEAD_SOURCE = 'lead_source';
+            let NOTES_FOR_SALES_TEAM = 'notes_for_sales_team';
+
+
+            let utm_params = {
+                'utm_source': '',
+                'utm_medium': '',
+                'utm_campaign': '',
+                'utm_content': '',
+                'utm_term': '',
+                'referring_url': '',
+                'lead_source': '',
+                'notes_for_sales_team': ''
+            };
+            const acuity_fields = {
+                'utm_source': 'field:7300773',
+                'utm_medium': 'field:7300775',
+                'utm_campaign': 'field:7300777',
+                'utm_content': 'field:7300781',
+                'utm_term': 'field:7300782',
+                'referring_url': 'field:7300788',
+                'lead_source' : 'field:9893266',
+                'notes_for_sales_team': 'field:10276660'
+            };
+
+            // Get best source for UTM parameters
+            if (ACUITY_TRACKING_OVERRIDE && (getOverrideValueSdr(UTM_SOURCE) != null ) ) {
+                utm_params[UTM_SOURCE] = getOverrideValueSdr(UTM_SOURCE);
+                utm_params[UTM_MEDIUM] = getOverrideValueSdr(UTM_MEDIUM);
+                utm_params[UTM_CAMPAIGN] = getOverrideValueSdr(UTM_CAMPAIGN);
+                utm_params[UTM_CONTENT] = getOverrideValueSdr(UTM_CONTENT);
+                utm_params[UTM_TERM] = getOverrideValueSdr(UTM_TERM);
+                utm_params[LEAD_SOURCE] = getOverrideValueSdr(LEAD_SOURCE);
+                utm_params[NOTES_FOR_SALES_TEAM] = getOverrideValueSdr(NOTES_FOR_SALES_TEAM);
+            } else {
+                utm_params = parseUtmSdr(utm_params, window.location.search);
+                if (utm_params[UTM_SOURCE] == null || utm_params[UTM_SOURCE].length == 0 ) {
+                    if (getCookieValueSdr(UTM_SOURCE)) {
+                        utm_params[UTM_SOURCE] = getCookieValueSdr(UTM_SOURCE);
+                        utm_params[UTM_MEDIUM] = getCookieValueSdr(UTM_MEDIUM);
+                        utm_params[UTM_CAMPAIGN] = getCookieValueSdr(UTM_CAMPAIGN);
+                        utm_params[UTM_CONTENT] = getCookieValueSdr(UTM_CONTENT);
+                        utm_params[UTM_TERM] = getCookieValueSdr(UTM_TERM);
+                        utm_params[LEAD_SOURCE] = '';
+                        utm_params[NOTES_FOR_SALES_TEAM] = '';
+                    } else {
+                        utm_params[UTM_SOURCE] = 'direct';
+                        utm_params[UTM_MEDIUM] = 'website';
+                        utm_params[UTM_CAMPAIGN] = encodeURIComponent(window.location.href);
+                        utm_params[UTM_CONTENT] = '';
+                        utm_params[UTM_TERM] = '';
+                        utm_params[LEAD_SOURCE] = '';
+                        utm_params[NOTES_FOR_SALES_TEAM] = '';
+                    }
+                }
+            }
+            utm_params[REFERRING_URL] = encodeURIComponent(window.location.href);
+
+            // Prep the Acuity query string
+            let acuity_param = '';
+            for (const term in utm_params) {
+                acuity_param = acuity_param + '&' + acuity_fields[term] + '=' + utm_params[term];
+            }
+            let acuity_src_utm = acuity_url_initial + acuity_param;
+
+            // Append the Acuity query string on any and all Acuity iframes
+            let theFrames = document.querySelectorAll('iframe[src*="app.acuityscheduling.com"]');
+
+            theFrames.forEach(frameElement => {
+                frameElement.setAttribute('src', acuity_src_utm);
+            });
+
+
+        };
+
+        function getCookieValueSdr(cookieName) {
+            var b = document.cookie.match('(^|;)\\s*' + 'htm_' + cookieName + '\\s*=\\s*([^;]+)');
+            return b ? b.pop() : '';
+        }
+        function parseUtmSdr(utm_params, param_string) {
+            const urlParams = new URLSearchParams(param_string);
+
+            for (const term in utm_params) {
+                utm_params[term] = urlParams.get(term);
+            }
+            return utm_params;
+        }
+        // The UTM override values are stored in element with specific ID and data-* attributes corresponding to the override values.
+        // e.g.  <div id="acuity-tracking-override" data-utm_source="src" data-utm_medium="med" ... etc.></div>
+        function getOverrideValueSdr(utmName) {
+            return (document.querySelector('#acuity-tracking-override').dataset[utmName] ?
+                    document.querySelector('#acuity-tracking-override').dataset[utmName] : "") ;
+        }
+
+    })();
+
+</script>

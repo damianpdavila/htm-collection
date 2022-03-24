@@ -1,0 +1,30 @@
+
+Today:
+
+> research Guy email about appointment so can give answer on the ones so far in April  (spreadsheet for April is open; first few contacts open in AC in Chrome).
+
+> Let's revisit the acuity tracking script to try to trigger on iframe loaded; see initial research page in Chrome
+
+> Maybe add logic to check for elements in Acuity iframe before continuing the script?
+
+> Gotta find a way to ensure that at least a default value is stored in Acuity 100% of the time.
+
+
+conversion script in acuity
+
+1. post request for querystring to window.top
+2. wait for response
+3. if response, then 
+   a. get utms from querystring
+   b. save values, even blank/null because that is what top window says it had
+   c. save originating url from message into "form originating url" custom field
+4. if no response/timeout, then
+   a. store default values: source: acuity medium: website campaign: acuity_conversion_not-htmpage_not-unbouncepage
+5. call zapier webhook to send values to AC
+
+Acuity tracking script (HTM and Unbounce sites)
+
+1. listen for messages
+2. if 'htm_appointment_querystring'
+   a. get current querystring
+   b. post message to originator with querystring

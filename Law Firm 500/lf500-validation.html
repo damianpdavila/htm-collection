@@ -1,0 +1,48 @@
+<!-- IMPORTANT:  modify the field validation script below to hook the currency fields (revenue) for the current form.-->
+
+<div class="_form_18"></div>
+<script src="https://lawfirm500.activehosted.com/f/embed.php?id=18" type="text/javascript" charset="utf-8"></script>
+
+<!-- Validate the revenue fields -->
+
+<script type="text/javascript">
+    // Specify the CSS selectors to each of the fields to be validated:
+    const FIRST_REVENUE_FIELD = "field[21]";
+    const FIRST_REVENUE_AMT = 50000;
+    const LAST_REVENUE_FIELD = "field[93]";
+    const LAST_REVENUE_AMT = 500000;
+    const revenueInputs = ["._field21 input", "._field22 input", "._field88 input", "._field93 input"];
+
+    window.onload = (event) => {
+        revenueInputs.forEach(function(selector, idx) {
+            document.querySelector(selector).onchange = validateNumeric;
+        });
+    };
+
+    function validateNumeric(evt) {
+        if (/\D/.test(evt.target.value)) {
+            alertFailedValidation("Please use only numbers, no punctuation or spaces, and no decimals", evt.target);
+            evt.target.value="";
+        } else {
+            if (evt.target.id == FIRST_REVENUE_FIELD) {
+                if (parseInt(evt.target.value) < FIRST_REVENUE_AMT) {
+                    alertFailedValidation("First year gross revenue must be at least $50,000", evt.target);
+                }
+            } else {
+                if (evt.target.id == LAST_REVENUE_FIELD) {
+                    if (parseInt(evt.target.value) < LAST_REVENUE_AMT) {
+                        alertFailedValidation("Last year gross revenue must be at least $500,000", evt.target);
+                    }
+                }
+            }
+        }
+    };
+
+    function alertFailedValidation(msg = "Please review this entry", element) {
+        alert(msg);
+        setTimeout(function() {
+            element.focus();
+            element.select();
+        }, 10);
+    };
+</script>

@@ -1,0 +1,30 @@
+<!-- Begin Infusionsoft attribution tracking -->
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+
+        // Suppress site-wide IS tracking code (if applicable) for testing changes; remove this code on the page containing updated code
+        if (window.location.search.toLowerCase().indexOf('infusionsoft-testing') > -1) { 
+            return true;
+        }
+        if (window.location.search.toLowerCase().indexOf('utm_source') == -1) {
+            return true;
+        }
+
+        utm_params = window.location.search;
+
+        //append utm on IS bootcamp link
+        const infusionsoft_href = 'education.infusionsoft.com/app/orderForms/02e7e558-280e-48bb-837b-d9d28bbb9905';
+        var infusionsoft_href_utm;
+
+        // Append the query string on any IS links
+        jQuery('a').map(function() {
+            if ( jQuery(this).attr('href') && ( jQuery(this).attr('href').includes(infusionsoft_href) ) ) {
+                infusionsoft_href_utm = jQuery(this).attr('href') + utm_params;
+                jQuery(this).attr('href', infusionsoft_href_utm);
+            }
+        });
+
+    });
+
+</script>
+<!-- End Infusionsoft attribution tracking -->
